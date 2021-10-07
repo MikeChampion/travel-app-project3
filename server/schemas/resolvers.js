@@ -4,23 +4,29 @@ const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
-  // Query:{
-   
-  //   }
-  // },
+  Query:{
+    activities: async () => {
+      return await Activity.find();
+    },
+   },
+
+   // ========== MUTATIONS ==========
     Mutation: {
+      
         addUser: async (parent, args) => {
           const user = await User.create(args);
           const token = signToken(user);
     
           return { token, user };
         },
+
         updateUser: async (parent, args, context) => {
             if (context.user) {
               return await User.findByIdAndUpdate(context.user._id, args, { new: true });
             }
             throw new AuthenticationError('Not logged in');
         },
+
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
       
@@ -37,11 +43,23 @@ const resolvers = {
             const token = signToken(user);
       
             return { token, user };
-          }
+          },
+
+          addActivity: async (parent, {when, where, description}) => {
+
+            return Activity.create({ when, where, description }); 
+            
+        }
+        // if()
+        // throw new AuthenticationError('Not logged in');
+
+          
+
         }
 
 
 }
+
 
 
 module.exports = resolvers;
