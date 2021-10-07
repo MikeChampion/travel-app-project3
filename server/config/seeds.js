@@ -22,8 +22,8 @@ db.once('open', async () => {
   });
 
     await User.create({
-    firstName: 'Betty White',
-    lastName: 'Holt',
+    firstName: 'Betty ',
+    lastName: 'White',
     email: 'bwhite@testmail.com',
     password: 'password12345'
   });
