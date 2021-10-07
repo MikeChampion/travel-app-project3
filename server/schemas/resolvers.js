@@ -48,9 +48,9 @@ const resolvers = {
             return { token, user };
           },
 
-          addActivity: async (parent, {when, where, description}) => {
+          addActivity: async (parent, {when, where, description, postedBy}) => {
 
-            return Activity.create({ when, where, description }); 
+            return Activity.create({ when, where, description, postedBy }); 
             
         }
         // if()
