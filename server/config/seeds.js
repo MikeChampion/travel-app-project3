@@ -22,31 +22,31 @@ db.once('open', async () => {
   });
 
     await User.create({
-    firstName: 'Elijah',
+    firstName: 'Betty White',
     lastName: 'Holt',
-    email: 'eholt@testmail.com',
+    email: 'bwhite@testmail.com',
     password: 'password12345'
   });
 
   console.log('users seeded');
 
-  process.exit();
-});
+ 
 
-db.once('open', async () => {
 
     await Activity.deleteMany();
 
 await Activity.create ({    
 when: "10/23/21",
 where: "Hollywood",
-description: "Movie Premier"
+description: "Movie Premier",
+
 });
 
 await Activity.create ({    
     when: "10/30/21",
     where: "St. Louis",
-    description: "Halloween party"
+    description: "Halloween party",
+    
     });
 
 console.log ('activities seeded')
