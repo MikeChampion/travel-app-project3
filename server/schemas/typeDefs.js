@@ -18,7 +18,7 @@ type Auth {
     where: String!
     when: String!
     description: String!
-    
+    postedBy: User!
 
   }
 
