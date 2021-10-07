@@ -25,6 +25,7 @@ type Auth {
   type Query {
    user: User
    activities: [Activity]
+   activity(id_: ID!) : Activity
 }
 
 type Mutation {
@@ -32,6 +33,7 @@ type Mutation {
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
     addActivity(when: String!, where: String!, description: String!): Activity
+    removeActivity(id_: ID!): Activity
   }`;
 
   module.exports = typeDefs;

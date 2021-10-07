@@ -8,11 +8,14 @@ const resolvers = {
     activities: async () => {
       return await Activity.find();
     },
+    activity: async (parent, { activityId }) => {
+      return Activity.findOne({ _id: activityId });
+    },
    },
 
    // ========== MUTATIONS ==========
     Mutation: {
-      
+
         addUser: async (parent, args) => {
           const user = await User.create(args);
           const token = signToken(user);
@@ -54,8 +57,13 @@ const resolvers = {
         // throw new AuthenticationError('Not logged in');
 
           
+        },
 
-        }
+        // removeActivity: async (parent, { ID}) => {
+        //   return Activity.findOneAndDelete({ _id: ID });
+        // }
+
+
 
 
 }
