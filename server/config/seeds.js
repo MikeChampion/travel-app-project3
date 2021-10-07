@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User } = require('../models');
+const { User, Activity } = require('../models');
 
 db.once('open', async () => {
 
@@ -21,14 +21,36 @@ db.once('open', async () => {
     password: 'password12345'
   });
 
-  await User.create({
-    firstName: 'Lance',
-    lastName: 'Green',
-    email: 'lgreen@testmail.com',
+    await User.create({
+    firstName: 'Betty ',
+    lastName: 'White',
+    email: 'bwhite@testmail.com',
     password: 'password12345'
   });
 
   console.log('users seeded');
 
-  process.exit();
+ 
+
+
+    await Activity.deleteMany();
+
+await Activity.create ({    
+when: "10/23/21",
+where: "Hollywood",
+description: "Movie Premier",
+
+});
+
+await Activity.create ({    
+    when: "10/30/21",
+    where: "St. Louis",
+    description: "Halloween party",
+    
+    });
+
+console.log ('activities seeded')
+
+process.exit ();
+
 });
