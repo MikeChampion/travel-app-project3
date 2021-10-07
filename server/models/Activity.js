@@ -18,11 +18,11 @@ const activitySchema = new Schema  ({
         required: true,
         trim: true
     },
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+    // author: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: true
+    // }
 });
 
 
