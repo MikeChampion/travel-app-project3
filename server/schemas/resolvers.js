@@ -57,8 +57,6 @@ const resolvers = {
             // throw new AuthenticationError('Not logged in');
 
         },
-
-
         removeActivity: async (parent, { _id }) => {
           return Activity.findOneAndDelete({ _id });
         }
