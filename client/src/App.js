@@ -1,8 +1,11 @@
 import Navbar from "./components/Navbar";
 import Activity from "./components/Activity";
+import Modal from "react-modal";
 import Itinerary from "./components/Itinerary";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
+
+Modal.setAppElement('#root')
 
 function App() {
     return (
