@@ -39,8 +39,7 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                    {/* <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button> */}
-                                    <button onClick={e => {this.showModal();}} className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>0</p>
                                 </div>
                             </div>
@@ -56,32 +55,27 @@ function Activities(props) {
                 style={
                     {
                         overlay: {
-                            position: 'fixed',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'rgba(255, 255, 255, 0.75)'
+                            
                         },
-                            content: {
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            right: 'auto',
-                            bottom: 'auto',
-                            border: '1px solid #ccc',
-                            background: '#fff',
-                            overflow: 'auto',
-                            WebkitOverflowScrolling: 'touch',
-                            borderRadius: '4px',
-                            outline: 'none',
-                            padding: '20px',
-                            transform: 'translate(-50%, -50%)'
+                        content: {
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        border: '1px solid #ccc',
+                        background: '#fff',
+                        overflow: 'auto',
+                        WebkitOverflowScrolling: 'touch',
+                        borderRadius: '4px',
+                        outline: 'none',
+                        padding: '20px',
+                        transform: 'translate(-50%, -50%)'
                         }
                     }    
                 }
                 >
-                <div id="newActivity" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg ">
+                <div id="newActivity" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg">
                     <h2 className="font-bold">Add Activity</h2>
                     <form className="signup-form flex flex-col justify-start items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
