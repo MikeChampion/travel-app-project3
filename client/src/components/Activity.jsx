@@ -39,10 +39,10 @@ function Activities(props) {
                                     <button class="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>4</p>
                                 </div>
-                                <div class="flex flex-col items-center gap-1">
+                                {/* <div class="flex flex-col items-center gap-1">
                                     <button class="p-1 border-2 bg-red-300 border-red-600 text-red-900 rounded"><ion-icon name="thumbs-down"></ion-icon></button>
                                     <p>0</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
