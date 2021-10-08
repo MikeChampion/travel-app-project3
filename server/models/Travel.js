@@ -27,7 +27,7 @@ const travelSchema = new Schema  ({
      postedBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        
       }
 });
 

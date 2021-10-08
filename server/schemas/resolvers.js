@@ -13,6 +13,10 @@ const resolvers = {
     activity: async (parent, { activityId }) => {
       return Activity.findOne({ _id: activityId });
     },
+    travels: async () => {
+      return await Travel.find();
+    },
+    
    },
 
    // ========== MUTATIONS ==========
