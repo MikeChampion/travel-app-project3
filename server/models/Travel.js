@@ -25,7 +25,7 @@ const travelSchema = new Schema  ({
     },
     
      postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
       }
