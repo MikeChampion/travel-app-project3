@@ -19,7 +19,7 @@ const activitySchema = new Schema  ({
         trim: true
     },
     postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: false
       },

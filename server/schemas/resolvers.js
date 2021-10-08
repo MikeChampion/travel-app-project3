@@ -48,9 +48,10 @@ const resolvers = {
             return { token, user };
           },
 
-          addActivity: async (parent, {when, where, description, postedBy}) => {
+          addActivity: async (_, args) => {
 
-            return Activity.create({ when, where, description, postedBy }); 
+            return Activity.create(args)
+            .populate(args.postedBy) 
             
         }
         // if()
