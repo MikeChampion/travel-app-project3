@@ -4,6 +4,8 @@ const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
+
+  // ======== QUERIES ========
   Query:{
     activities: async () => {
       return await Activity.find();
