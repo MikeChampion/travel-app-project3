@@ -18,7 +18,7 @@ type Auth {
     where: String!
     when: String!
     description: String!
-    postedBy: String!
+    postedBy: ID!
    
 
    
@@ -34,7 +34,7 @@ type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
-    addActivity(when: String!, where: String!, description: String!, postedBy: String!): Activity
+    addActivity(when: String!, where: String!, description: String!, postedBy: ID!): Activity
     removeActivity(id_: ID!): Activity
   }`;
 
