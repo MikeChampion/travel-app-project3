@@ -26,15 +26,27 @@ type Auth {
     when: String!
     description: String!
     postedBy: User!
-   
-
-   
+     
 }
+
+type Travel {
+  _id: ID
+  who: String
+  how: String
+  arrive: String
+  depart: String
+  postedBy: User!
+
+}
+
+
 
   type Query {
    user: User
    activities: [Activity]
    activity(id_: ID!) : Activity
+   travels: [Travel]
+   travel(id_: ID!): Travel
 }
 
 type Mutation {
@@ -43,6 +55,8 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addActivity(when: String!, where: String!, description: String!, postedBy: ID!): Activity
     removeActivity(_id: String!): Activity
+    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID! ): Activity
+    removeTravel(_id: String!): Travel
   }`;
 
   module.exports = typeDefs;
