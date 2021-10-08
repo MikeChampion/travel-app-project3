@@ -26,7 +26,7 @@ function Activities(props) {
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
             <div className="flex flex-row justify-between items-center w-5/6">
                 <h2 className="text-2xl font-bold self-start">Activities</h2>
-                <button onClick={() => setModalIsOpen(true)} class="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
+                <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
             </div>
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {activities.map((activity, index) => (
@@ -37,16 +37,12 @@ function Activities(props) {
                             <p>{activity.desc}</p>
                         </div>
                         <div className="flex justify-end items-center w-3/12">
-                            <div class="flex flex-row gap-2">
-                                <div class="flex flex-col items-center gap-1">
-                                    {/* <button class="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button> */}
-                                    <button onClick={e => {this.showModal();}} class="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                            <div className="flex flex-row gap-2">
+                                <div className="flex flex-col items-center gap-1">
+                                    {/* <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button> */}
+                                    <button onClick={e => {this.showModal();}} className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>0</p>
                                 </div>
-                                {/* <div class="flex flex-col items-center gap-1">
-                                    <button class="p-1 border-2 bg-red-300 border-red-600 text-red-900 rounded"><ion-icon name="thumbs-down"></ion-icon></button>
-                                    <p>0</p>
-                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -85,20 +81,20 @@ function Activities(props) {
                     }    
                 }
                 >
-                <div id="newActivity" class="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg ">
-                    <h2 class="font-bold">Add Activity</h2>
+                <div id="newActivity" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg ">
+                    <h2 className="font-bold">Add Activity</h2>
                     <form className="signup-form flex flex-col justify-start items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
-                            <label for="name-signup" className="font-bold self-start">Where:</label>
+                            <label htmlFor="name-signup" className="font-bold self-start">Where:</label>
                             <input className="form-input" type="text" id="name-signup" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
-                            <label for="email-signup" className="font-bold self-start">When:</label>
-                            <input class="form-input" type="text" id="email-signup" />
+                            <label htmlFor="email-signup" className="font-bold self-start">When:</label>
+                            <input className="form-input" type="text" id="email-signup" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label
-                            for="password-signup"
+                            htmlFor="password-signup"
                             className="font-bold self-start"
                             >Description:</label>
                             <textarea rows="4" cols="40" className="form-input" id="password-signup"></textarea>   
