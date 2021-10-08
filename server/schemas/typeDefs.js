@@ -44,9 +44,9 @@ type Travel {
   type Query {
    user: User
    activities: [Activity]
-   activity(id_: ID!) : Activity
+   activity(_id: ID!) : Activity
    travels: [Travel]
-   travel(id_: ID!): Travel
+   travel(_id: ID!): Travel
 }
 
 type Mutation {

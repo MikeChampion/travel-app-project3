@@ -10,12 +10,15 @@ const resolvers = {
     activities: async () => {
       return await Activity.find();
     },
-    activity: async (parent, { activityId }) => {
-      return Activity.findOne({ _id: activityId });
+    activity: async (_, { _id }) => {
+      return Activity.findOne({ _id });
     },
     travels: async () => {
       return await Travel.find();
     },
+    travel: async (_, {_id}) => {
+      return Travel.findOne({_id})
+    }
     
    },
 
