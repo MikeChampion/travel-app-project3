@@ -5,12 +5,12 @@ const { Schema } = mongoose;
 const voteSchema = new Schema  ({
 
      votedBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
       },
       activity: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Activity',
         required: true
       }

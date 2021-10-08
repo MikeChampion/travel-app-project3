@@ -1,16 +1,25 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Activity } = require('../models');
+const { User, Activity, Travel } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
+
+  // ======== QUERIES ========
   Query:{
     activities: async () => {
       return await Activity.find();
     },
-    activity: async (parent, { activityId }) => {
-      return Activity.findOne({ _id: activityId });
+    activity: async (_, { _id }) => {
+      return Activity.findOne({ _id });
     },
+    travels: async () => {
+      return await Travel.find();
+    },
+    travel: async (_, {_id}) => {
+      return Travel.findOne({_id})
+    }
+    
    },
 
    // ========== MUTATIONS ==========
@@ -51,20 +60,25 @@ const resolvers = {
           addActivity: async (_, args) => {
 
             return Activity.create(args)
-            .populate(args.postedBy) 
-            
-        }
-        // if()
-        // throw new AuthenticationError('Not logged in');
+            // .populate(args.postedBy);
 
-          
+            // if(!signToken)
+            // throw new AuthenticationError('Not logged in');
+
+        },
+        removeActivity: async (_, { _id }) => {
+          return Activity.findOneAndDelete({ _id });
         },
 
-        // removeActivity: async (parent, { ID}) => {
-        //   return Activity.findOneAndDelete({ _id: ID });
-        // }
+        addTravel: async (_, args) => {
+          return Travel.create(args)
+        },
 
+        removeTravel: async (_, {_id}) => {
+          return Travel.findOneAndDelete({_id});
+        }
 
+      }
 
 
 }
