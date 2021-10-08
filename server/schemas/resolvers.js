@@ -51,20 +51,19 @@ const resolvers = {
           addActivity: async (_, args) => {
 
             return Activity.create(args)
-            .populate(args.postedBy) 
-            
-        }
-        // if()
-        // throw new AuthenticationError('Not logged in');
+            // .populate(args.postedBy);
 
-          
+            // if(!signToken)
+            // throw new AuthenticationError('Not logged in');
+
         },
 
-        // removeActivity: async (parent, { ID}) => {
-        //   return Activity.findOneAndDelete({ _id: ID });
-        // }
 
+        removeActivity: async (parent, { _id }) => {
+          return Activity.findOneAndDelete({ _id });
+        }
 
+      }
 
 
 }

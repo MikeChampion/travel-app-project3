@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
+const Activity = require('./Activity')
 
 
 const userSchema = new Schema({
@@ -25,6 +26,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  activity: [Activity.schema]
   
 });
 
