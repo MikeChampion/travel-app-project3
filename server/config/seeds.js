@@ -1,8 +1,8 @@
 const db = require('./connection');
-const { User, Activity } = require('../models');
+const { User, Activity, Travel } = require('../models');
 
 db.once('open', async () => {
-
+ // ======== USERS ========
     await User.deleteMany();
 
   await User.create({
@@ -31,7 +31,7 @@ db.once('open', async () => {
   console.log('users seeded');
 
  
-
+// ========= ACTIVITIES ========
 
     await Activity.deleteMany();
 
@@ -50,6 +50,28 @@ await Activity.create ({
     });
 
 console.log ('activities seeded')
+
+// ======== TRAVELS ========
+
+await Travel.deleteMany();
+
+await Travel.create ({
+  who: "Robinson Family",
+  how: "Plane",
+  arrive: "8:00 am 10/22/21",
+  depart: "9:00 am 10/28/21"
+
+});
+
+await Travel.create ({
+  who: "Smith Family",
+  how: "Car",
+  arrive: "3:00 pm 10/21/21",
+  depart: "12:00 pm 10/28/21"
+})
+
+console.log ('travels seeded')
+
 
 process.exit ();
 
