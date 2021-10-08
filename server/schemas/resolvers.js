@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Activity } = require('../models');
+const { User, Activity, Travel } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
@@ -57,8 +57,12 @@ const resolvers = {
             // throw new AuthenticationError('Not logged in');
 
         },
-        removeActivity: async (parent, { _id }) => {
+        removeActivity: async (_, { _id }) => {
           return Activity.findOneAndDelete({ _id });
+        },
+
+        addTravel: async (_, args) => {
+          return Travel.create(args)
         }
 
       }

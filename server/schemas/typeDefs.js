@@ -55,7 +55,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addActivity(when: String!, where: String!, description: String!, postedBy: ID!): Activity
     removeActivity(_id: String!): Activity
-    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID! ): Activity
+    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID! ): Travel
     removeTravel(_id: String!): Travel
   }`;
 
