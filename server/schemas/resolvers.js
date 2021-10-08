@@ -63,6 +63,10 @@ const resolvers = {
 
         addTravel: async (_, args) => {
           return Travel.create(args)
+        },
+
+        removeTravel: async (_, {_id}) => {
+          return Travel.findOneAndDelete({_id});
         }
 
       }
