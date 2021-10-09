@@ -8,16 +8,22 @@ const resolvers = {
   // ======== QUERIES ========
   Query:{
     activities: async () => {
-      return await Activity.find();
+      return  Activity.find()
+      .populate("postedBy")
+
     },
-    activity: async (_, { _id }) => {
-      return Activity.findOne({ _id });
+    activity: async (_, args) => {
+      return Activity.findOne( { _id: args._id})
+      .populate("postedBy")
+
     },
     travels: async () => {
-      return await Travel.find();
+      return  Travel.find()
+      .populate("postedBy")
     },
-    travel: async (_, {_id}) => {
-      return Travel.findOne({_id})
+    travel: async (_, args) => {
+      return Travel.findOne({_id: args._id})
+      .populate("postedBy")
     }
     
    },
@@ -59,13 +65,9 @@ const resolvers = {
 
           addActivity: async (_, args) => {
 
-            return Activity.create(args)
-            // .populate(args.postedBy);
+            return  Activity.create(args)
 
-            // if(!signToken)
-            // throw new AuthenticationError('Not logged in');
-
-        },
+            },
         removeActivity: async (_, { _id }) => {
           return Activity.findOneAndDelete({ _id });
         },

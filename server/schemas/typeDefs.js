@@ -25,7 +25,7 @@ type Auth {
     where: String!
     when: String!
     description: String!
-    postedBy: User!
+    postedBy: User
      
 }
 
@@ -35,7 +35,7 @@ type Travel {
   how: String
   arrive: String
   depart: String
-  postedBy: User!
+  postedBy: User
 
 }
 
@@ -53,9 +53,9 @@ type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
-    addActivity(when: String!, where: String!, description: String!, postedBy: ID!): Activity
+    addActivity(when: String!, where: String!, description: String!, postedBy: ID): Activity
     removeActivity(_id: String!): Activity
-    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID! ): Travel
+    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID ): Travel
     removeTravel(_id: String!): Travel
   }`;
 
