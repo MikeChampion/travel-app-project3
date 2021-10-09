@@ -13,7 +13,7 @@ function Login() {
         const newSignup = Object.fromEntries(new FormData(event.target))
 
         const mutationResponse = await addUser({
-            variables: {...newSignup}
+            variables: newSignup
         });
         const token = mutationResponse.data.addUser.token;
         Auth.login(token);
