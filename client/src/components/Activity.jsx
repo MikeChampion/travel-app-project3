@@ -84,7 +84,7 @@ function Activities(props) {
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label htmlFor="email-signup" className="font-bold self-start">When:</label>
-                            <input className="form-input" type="text" id="email-signup" />
+                            <input className="form-input" type="date" id="email-signup" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label

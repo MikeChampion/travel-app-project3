@@ -70,7 +70,7 @@ function Itinerary(props) {
                 >
                 <div id="itinerary" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg"
                 >
-                    <h2 className="font-bold">Add intinerary</h2>
+                    <h2 className="font-bold">Add itinerary</h2>
                     <form className="signup-form flex flex-col justify-center items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
                             <label for="name-" className="font-bold self-start">Who:</label>
@@ -82,11 +82,11 @@ function Itinerary(props) {
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label for="name-signup" className="font-bold self-start">Arrive:</label>
-                            <input className="form-input" type="text" id="name-signup" />
+                            <input className="form-input" type="date" id="name-signup" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label for="email-signup" className="font-bold self-start">Depart:</label>
-                            <input className="form-input" type="text" id="email-signup" />
+                            <input className="form-input" type="date" id="email-signup" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label
