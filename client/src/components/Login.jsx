@@ -10,8 +10,7 @@ function Login() {
 
     const handleSignupSubmit = async (event) => {
         event.preventDefault();
-       console.log(Object.fromEntries(new FormData(event.target)))
-       const newSignup = Object.fromEntries(new FormData(event.target))
+        const newSignup = Object.fromEntries(new FormData(event.target))
 
         const mutationResponse = await addUser({
             variables: {...newSignup}
@@ -22,9 +21,11 @@ function Login() {
 
       const handleLoginSubmit = async (event) => {
         event.preventDefault();
+        const loginSubmission = Object.fromEntries(new FormData(event.target))
+
         try {
           const mutationResponse = await login({
-            variables: { email: formState.email, password: formState.password },
+            variables: loginSubmission,
           });
           const token = mutationResponse.data.login.token;
           Auth.login(token);
@@ -49,15 +50,15 @@ function Login() {
                     <h2 className="font-bold">Login</h2>
                     <form onSubmit={handleLoginSubmit} className="login-form flex flex-col justify-center items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
-                            <label htmlFor="email-login" className="font-bold self-start">email:</label>
-                            <input className="form-input" type="text" id="email-login" name="nameLogin" onChange={handleChange} />
+                            <label htmlFor="email" className="font-bold self-start">email:</label>
+                            <input className="form-input" type="text" id="email" name="email" onChange={handleChange} />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label
-                            htmlFor="password-login"
+                            htmlFor="password"
                             className="font-bold self-start"
                             >password:</label>
-                            <input className="form-input" type="password" id="password-login" name="passwordLogin" onChange={handleChange} />
+                            <input className="form-input" type="password" id="password" name="password" onChange={handleChange} />
                         </div>
                         <button
                             className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white"
