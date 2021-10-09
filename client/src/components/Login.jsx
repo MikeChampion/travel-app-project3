@@ -2,11 +2,24 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER, LOGIN } from '../utils/mutations';
+import AdminContext from '../context/AdminContext';
 
 function Login() {
+    console.log('hello')
+    const [admin, setAdmin] = React.useContext(AdminContext)
+
     const [formState, setFormState] = useState({ email: '', password: '' });
-    const [addUser] = useMutation(ADD_USER);
-    const [login, { error }] = useMutation(LOGIN);
+    const [addUser] = useMutation(ADD_USER, {
+        onCompleted() {
+            console.log("Update admin context with logged in status")
+            setAdmin(true)
+        }
+    });
+    const [login, { error }] = useMutation(LOGIN, {
+        onCompleted() {
+            console.log("Update admin context with logged in status")
+            setAdmin(true)
+        }});
 
     const handleSignupSubmit = async (event) => {
         event.preventDefault();
