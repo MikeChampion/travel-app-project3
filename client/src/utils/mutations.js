@@ -37,12 +37,13 @@ mutation addActivity (
   $where: String!
   $when: String!
   $description: String!
-  
+  $notes: String
 ){
   addActivity(
     where: $where
     when: $when
     description: $description
+    notes: $notes
     
 
   ) {
@@ -50,6 +51,7 @@ mutation addActivity (
     where 
     when
     description
+    notes
     
   }
 }
@@ -61,6 +63,7 @@ mutation addActivity (
   $how: String!
   $arrive: String!
   $depart: String!
+  $notes: String
   
 ){
   addActivity(
@@ -68,7 +71,7 @@ mutation addActivity (
     how: $how
     arrive: $arrive
     depart: $depart
-    
+    notes: $notes
 
   ) {
     _id
@@ -76,6 +79,7 @@ mutation addActivity (
     how
     arrive
     depart
+    notes
     
   }
 }

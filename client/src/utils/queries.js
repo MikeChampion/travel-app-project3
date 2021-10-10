@@ -52,6 +52,7 @@ query travels($postedBy: ID) {
       how
       arrive
       depart
+      notes
       postedBy {
         _id
         firstName
@@ -70,6 +71,7 @@ export const QUERY_TRAVEL = gql`
       how
       arrive
       depart
+      notes
       postedBy {
         _id
         firstName
