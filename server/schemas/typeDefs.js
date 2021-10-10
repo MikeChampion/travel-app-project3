@@ -43,7 +43,7 @@ type Travel {
 
   type Query {
    user(_id: ID!): User
-   activities: [Activity]
+   activities(postedBy: ID):[Activity]
    activity(_id: ID!) : Activity
    travels: [Travel]
    travel(_id: ID!): Travel
@@ -55,7 +55,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addActivity(when: String!, where: String!, description: String!): Activity
     removeActivity(_id: String!): Activity
-    addTravel(who: String, how: String, arrive: String, depart: String, postedBy: ID ): Travel
+    addTravel(who: String, how: String, arrive: String, depart: String ): Travel
     removeTravel(_id: String!): Travel
   }`;
 

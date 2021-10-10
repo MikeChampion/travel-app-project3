@@ -37,20 +37,20 @@ mutation addActivity (
   $where: String!
   $when: String!
   $description: String!
-  $postedBy: User
+  
 ){
   addActivity(
     where: $where
     when: $when
     description: $description
-    postedBy: $postedBy
+    
 
   ) {
     _id
     where 
     when
     description
-    postedBy
+    
   }
 }
 `
@@ -61,14 +61,14 @@ mutation addActivity (
   $how: String!
   $arrive: String!
   $depart: String!
-  $postedBy: User
+  
 ){
   addActivity(
     who: $who
     how: $how
     arrive: $arrive
     depart: $depart
-    postedBy: $postedBy
+    
 
   ) {
     _id
@@ -76,7 +76,7 @@ mutation addActivity (
     how
     arrive
     depart
-    postedBy
+    
   }
 }
 `
