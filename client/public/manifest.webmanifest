@@ -1,6 +1,6 @@
 {
     "name": "travel-app-client",
-    "short_name": "Images App",
+    "short_name": "travel-app-client",
     "icons": [
       {
         "src": ,
@@ -14,8 +14,8 @@
       },
       
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#61dafb",
+    "background_color": "#282c34",
     "start_url": "/",
     "display": "standalone"
   }
