@@ -61,3 +61,21 @@ query travels($postedBy: ID) {
   }
 }
 `;
+
+export const QUERY_TRAVEL = gql`
+  query activity($id: ID!) {
+    activity(_id: $id) {
+      _id
+      who
+      how
+      arrive
+      depart
+      postedBy {
+        _id
+        firstName
+        lastName
+      }
+
+    }
+  }
+`;
