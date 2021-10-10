@@ -26,3 +26,19 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_ACTIVITY = gql`
+  query activity($id: ID!) {
+    activity(_id: $id) {
+      _id
+      when
+      where
+      description
+      postedBy {
+        firstName
+        lastName
+      }
+
+    }
+  }
+`;
