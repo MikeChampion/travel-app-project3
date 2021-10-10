@@ -45,7 +45,7 @@ type Travel {
    user(_id: ID!): User
    activities(postedBy: ID):[Activity]
    activity(_id: ID!) : Activity
-   travels: [Travel]
+   travels(postedBy: ID) :[Travel]
    travel(_id: ID!): Travel
 }
 

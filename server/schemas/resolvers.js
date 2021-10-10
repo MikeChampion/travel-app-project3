@@ -90,9 +90,22 @@ const resolvers = {
           return Activity.findOneAndDelete({ _id });
         },
 
-        addTravel: async (_, args) => {
-          return Travel.create(args)
-        },
+        addTravel: async (_, args, context) => {
+         
+          if (context.user) {
+            const travel = await Travel.create({ ...args, postedBy: context.user._id });
+            
+              await User.findByIdAndUpdate(
+              { _id: context.user._id },
+              { $push: { travels: travel._id } },
+              { new: true }
+            );
+
+            return await travel.populate('postedBy').execPopulate();
+          }
+        
+          throw new AuthenticationError('You need to be logged in!');
+          },
 
         removeTravel: async (_, {_id}) => {
           return Travel.findOneAndDelete({_id});

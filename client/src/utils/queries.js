@@ -35,6 +35,7 @@ export const QUERY_ACTIVITY = gql`
       where
       description
       postedBy {
+        _id
         firstName
         lastName
       }
@@ -42,3 +43,4 @@ export const QUERY_ACTIVITY = gql`
     }
   }
 `;
+
