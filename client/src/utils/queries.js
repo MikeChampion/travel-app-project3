@@ -44,3 +44,20 @@ export const QUERY_ACTIVITY = gql`
   }
 `;
 
+export const QUERY_TRAVELS = gql`
+query travels($postedBy: ID) {
+    travels(postedBy: $postedBy) {
+      _id
+      who
+      how
+      arrive
+      depart
+      postedBy {
+        _id
+        firstName
+        lastName
+    }
+    
+  }
+}
+`;
