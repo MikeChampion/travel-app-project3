@@ -42,7 +42,7 @@ type Travel {
 
 
   type Query {
-   user: User
+   user(_id: ID!): User
    activities: [Activity]
    activity(_id: ID!) : Activity
    travels: [Travel]

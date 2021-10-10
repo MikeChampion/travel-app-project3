@@ -7,6 +7,11 @@ const resolvers = {
 
   // ======== QUERIES ========
   Query:{
+
+    user: async (_, { _id }) => {
+      return User.findOne({ _id });
+    },
+
     activities: async () => {
       return  Activity.find()
       .populate("postedBy")
@@ -24,7 +29,8 @@ const resolvers = {
     travel: async (_, args) => {
       return Travel.findOne({_id: args._id})
       .populate("postedBy")
-    }
+    },
+    
     
    },
 
@@ -63,9 +69,11 @@ const resolvers = {
             return { token, user };
           },
 
-          addActivity: async (_, args) => {
+          addActivity: async (_, args, context) => {
+             console.log('CONTEXT',context)
 
             return  Activity.create(args)
+
 
             },
         removeActivity: async (_, { _id }) => {
