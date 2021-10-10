@@ -9,9 +9,9 @@
       },
       {
         "src": "logo512",
-        "sizes": "96x96",
+        "sizes": "512x512",
         "type": "image/png"
-      },
+      }
       
     ],
     "theme_color": "#61dafb",
