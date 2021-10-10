@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 
 
+
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -27,6 +28,7 @@ const userSchema = new Schema({
     minlength: 5
   },
  
+  
   
 });
 

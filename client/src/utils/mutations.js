@@ -31,3 +31,57 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_ACTIVITY = gql `
+mutation addActivity (
+  $where: String!
+  $when: String!
+  $description: String!
+  $notes: String
+){
+  addActivity(
+    where: $where
+    when: $when
+    description: $description
+    notes: $notes
+    
+
+  ) {
+    _id
+    where 
+    when
+    description
+    notes
+    
+  }
+}
+`
+
+export const ADD_TRAVEL = gql `
+mutation addActivity (
+  $who: String!
+  $how: String!
+  $arrive: String!
+  $depart: String!
+  $notes: String
+  
+){
+  addActivity(
+    who: $who
+    how: $how
+    arrive: $arrive
+    depart: $depart
+    notes: $notes
+
+  ) {
+    _id
+    who
+    how
+    arrive
+    depart
+    notes
+    
+  }
+}
+`
+

@@ -23,6 +23,10 @@ const travelSchema = new Schema  ({
         required: true,
         trim: true
     },
+    notes: {
+        type: String,
+        trim: true
+    },
     
      postedBy: {
         type: Schema.Types.ObjectId,
