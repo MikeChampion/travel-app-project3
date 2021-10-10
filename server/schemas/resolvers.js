@@ -69,13 +69,9 @@ const resolvers = {
             return { token, user };
           },
 
-          addActivity: async (_, args, context) => {
-             console.log('CONTEXT',context)
-
+          addActivity: async (_, args) => {
             return  Activity.create(args)
-
-
-            },
+        },
         removeActivity: async (_, { _id }) => {
           return Activity.findOneAndDelete({ _id });
         },
