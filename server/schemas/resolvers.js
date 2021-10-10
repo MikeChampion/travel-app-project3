@@ -69,9 +69,23 @@ const resolvers = {
             return { token, user };
           },
 
-          addActivity: async (_, args) => {
-            return  Activity.create(args)
-        },
+          addActivity: async (_, args, context) => {
+            
+            if (context.user) {
+              const activity = await Activity.create({ ...args, postedBy: context.user._id });
+              
+                await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { activities: activity._id } },
+                { new: true }
+              );
+
+              return await activity.populate('postedBy').execPopulate();
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+          },
+       
         removeActivity: async (_, { _id }) => {
           return Activity.findOneAndDelete({ _id });
         },
