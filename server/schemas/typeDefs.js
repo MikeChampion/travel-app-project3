@@ -40,6 +40,11 @@ type Travel {
 
 }
 
+type Vote {
+  _id: ID
+  votedBy: String
+}
+
 
 
   type Query {
