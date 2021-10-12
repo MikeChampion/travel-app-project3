@@ -5,15 +5,9 @@ const { Schema } = mongoose;
 const voteSchema = new Schema  ({
 
      votedBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true
       },
-      activity: {
-        type: Schema.Types.ObjectId,
-        ref: 'Activity',
-        required: true
-      }
 
 });
 
