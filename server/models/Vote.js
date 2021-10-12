@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 
 const voteSchema = new Schema  ({
 
-     votedBy: {
-        type: String,
-        required: true
+     username: {
+     type: String,
+     required: true
       },
 
 });

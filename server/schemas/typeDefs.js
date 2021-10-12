@@ -26,6 +26,7 @@ type Auth {
     when: String!
     description: String!
     postedBy: User
+    votes: [Vote]
      
 }
 
@@ -42,7 +43,7 @@ type Travel {
 
 type Vote {
   _id: ID
-  votedBy: String
+  username: String
 }
 
 
@@ -63,6 +64,7 @@ type Mutation {
     removeActivity(_id: String!): Activity
     addTravel(who: String, how: String, arrive: String, depart: String, notes: String ): Travel
     removeTravel(_id: String!): Travel
+    addVote(activityId: ID!): Activity
   }`;
 
   module.exports = typeDefs;

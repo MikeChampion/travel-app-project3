@@ -109,9 +109,22 @@ const resolvers = {
 
         removeTravel: async (_, {_id}) => {
           return Travel.findOneAndDelete({_id});
-        }
+        },
 
+      addVote: async (_, { activityId }, context) => {
+        if (context.user) {
+          const updatedActivity = await Activity.findOneAndUpdate(
+            { _id: activityId },
+            { $push: { votes: { username: context.user.firstName } } },
+            { new: true, runValidators: true }
+          );
+      
+          return await updatedActivity.populate('postedBy').execPopulate();
+        }
+      
+        throw new AuthenticationError('You need to be logged in!');
       }
+    }
 
 
 }
