@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 
-const { Schema } = mongoose;
+;
 
 const voteSchema = new Schema  ({
 
@@ -11,6 +11,6 @@ const voteSchema = new Schema  ({
 
 });
 
-    const Vote = mongoose.model('Vote', voteSchema);
+   
 
-module.exports = Vote;
+module.exports = voteSchema;

@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const voteschema = require('./Vote')
+
+
 
 const { Schema } = mongoose;
 
@@ -23,10 +26,12 @@ const activitySchema = new Schema  ({
         ref: 'User',
         required: false
       },
-
+      votes: [voteschema]
     
       
-});
+    })
+    
+
 
 
 const Activity = mongoose.model('Activity', activitySchema);
