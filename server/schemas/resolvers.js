@@ -114,19 +114,17 @@ const resolvers = {
           return Travel.findOneAndDelete({_id});
         },
 
-      addVote: async (_, { activityId }, context) => {
-        if (context.user) {
-          const updatedActivity = await Activity.findOneAndUpdate(
-            { _id: activityId },
-            { $push: { votes: { username: context.user.firstName } } },
-            { new: true, runValidators: true }
-          );
+      // addVote: async (_, { activityId }, context) => {
+      //   if (context.user) {
+      //     const activity = await Activity.findById(activityId);
+      //     if (activity) {
+      //       if(activity.votes.find((vote) => vote.))
+      //     }
+         
+      //   }
       
-          return await updatedActivity.populate('postedBy').execPopulate();
-        }
-      
-        throw new AuthenticationError('You need to be logged in!');
-      }
+      //   throw new AuthenticationError('You need to be logged in!');
+      // }
     }
 
 
