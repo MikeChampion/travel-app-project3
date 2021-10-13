@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import Activity from "./components/Activity";
 import Modal from "react-modal";
 import Itinerary from "./components/Itinerary";
-import Login from "./components/Login";
-import AdminContext from "./context/AdminContext";
+import LoginSignup from "./components/LoginSignup";
+import AdminContext from "./context/UserContext";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -41,7 +41,7 @@ function App() {
                             <Redirect exact from="/" to="/activities"></Redirect>
                             <Route path="/activities" component={Activity}></Route>
                             <Route path="/itinerary" component={Itinerary}></Route>
-                            <Route path="/login" component={Login}></Route>
+                            <Route path="/login" component={LoginSignup}></Route>
                             <Route path="/logout" component={Activity}></Route>
                         </Switch>
                     </main>
