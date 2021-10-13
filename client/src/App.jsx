@@ -2,9 +2,10 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Activity from "./components/Activity";
 import Modal from "react-modal";
+import auth from "../src/utils/auth"
 import Itinerary from "./components/Itinerary";
 import LoginSignup from "./components/LoginSignup";
-import AdminContext from "./context/UserContext";
+import UserContext from "./context/UserContext";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -33,7 +34,7 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider client={client}>
-            <AdminContext.Provider value={React.useState(false)}>
+            <UserContext.Provider value={React.useState(auth.getProfile())}>
                 <Router>
                     <main className="flex flex-col items-center w-full">
                         <Navbar />
@@ -46,7 +47,7 @@ function App() {
                         </Switch>
                     </main>
                 </Router>
-            </AdminContext.Provider>
+            </UserContext.Provider>
         </ApolloProvider>
     );
 }
