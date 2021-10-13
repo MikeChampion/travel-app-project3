@@ -120,7 +120,7 @@ const resolvers = {
           const username = await Activity.findById(postedBy)
           if (activity) {
             if(activity.votes.find((vote) => vote.username === username)){
-              activity.votes = activity.votes.filter((like) => like.username !== username)
+              activity.votes = activity.votes.filter((vote) => vote.username !== username)
             } else {
 
               activity.votes.push ({
