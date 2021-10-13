@@ -3,8 +3,7 @@ import { gql } from 'graphql-tag';
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
+      username
       email
         }
       }
@@ -19,8 +18,7 @@ export const QUERY_USER = gql`
       description
       postedBy {
         _id
-        firstName
-        lastName
+        username
       }
       
     }
@@ -36,8 +34,7 @@ export const QUERY_ACTIVITY = gql`
       description
       postedBy {
         _id
-        firstName
-        lastName
+        username
       }
 
     }
@@ -55,8 +52,7 @@ query travels($postedBy: ID) {
       notes
       postedBy {
         _id
-        firstName
-        lastName
+        username
     }
     
   }
@@ -74,8 +70,7 @@ export const QUERY_TRAVEL = gql`
       notes
       postedBy {
         _id
-        firstName
-        lastName
+       username
       }
 
     }

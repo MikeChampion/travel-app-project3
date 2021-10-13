@@ -4,6 +4,9 @@ const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
+  Activity: {
+    voteCount: (parent) => parent.votes.length
+},
 
   // ======== QUERIES ========
   Query:{
@@ -51,7 +54,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        login: async (parent, { email, password }) => {
+        login: async (_, { email, password }) => {
             const user = await User.findOne({ email });
       
             if (!user) {
@@ -109,9 +112,29 @@ const resolvers = {
 
         removeTravel: async (_, {_id}) => {
           return Travel.findOneAndDelete({_id});
-        }
+        },
 
+      addVote: async (_, { activityId }, context) => {
+        if (context.user) {
+          const activity = await Activity.findById(activityId);
+          const username = await User.findById(username)
+          if (activity) {
+            if(activity.votes.find((vote) => vote.username === username)){
+              activity.votes = activity.votes.filter((like) => like.username !== username)
+            } else {
+
+              activity.likes.push ({
+                username
+              });
+          }
+          await activity.save ()
+          return activity;
+         
+        }
+      
+       } else throw new AuthenticationError('You need to be logged in!');
       }
+    }
 
 
 }
