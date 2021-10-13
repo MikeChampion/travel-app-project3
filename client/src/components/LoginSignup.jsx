@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import UserContext from "../context/UserContext";
-import React, { useState } from 'react';
+import React from 'react';
 import authService from "../utils/auth";
 import { ADD_USER, LOGIN } from '../utils/mutations';
 import AddUser from "./AddUser";
@@ -47,8 +47,8 @@ const history = useHistory();
         });
       }
     } catch (error) {
-      // TODO: Handle error with a reusable error component
-      console.error(error.message);
+    //   // TODO: Handle error with a reusable error component
+    //   console.error(error.message);
     }
   };
     // console.log('hello')
