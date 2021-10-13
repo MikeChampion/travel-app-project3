@@ -1,7 +1,8 @@
+import UserContext from "../context/UserContext";
 import PropTypes from "prop-types";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import AdminContext from "../context/AdminContext";
+import authService from "services/authService";
 
 const navLinks = [
   {
@@ -14,27 +15,9 @@ const navLinks = [
   },
 ];
 
-// const navLoginOutLinks = [
-//     {
-//         name: "Login",
-//         route: "/login",
-//     },
-    // {
-    //     name: "Logout",
-    //     route: "/logout",
-    // },
-//   ];
-
 function Navbar(props) {
-    const [admin, setAdmin] = React.useContext(AdminContext);
-    
-    React.useEffect(() => {
-        console.log(localStorage.getItem("id_token"))
-    })
+    const [user] = React.useContext(UserContext);
 
-    if (admin) {
-        console.log("show logout button")
-    }
     return (
         <nav className="flex flex-row justify-between items-center w-full px-4 py-2 bg-yellow-700 text-white">
             <div className="flex">
@@ -48,10 +31,36 @@ function Navbar(props) {
                     </NavLink>
                 ))}
             </div>
-            <div className=""> 
+            {/* <div className=""> 
                 <NavLink to="/logout" activeClassName='bg-yellow-300 text-green-800 hover:text-yellow-900' className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition">Logout</NavLink>
                     
                 <NavLink to="/login" activeClassName='bg-yellow-300 text-green-800 hover:text-yellow-900' className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition">Login</NavLink>
+            </div> */}
+
+            <div>
+                {/* Check the token for a valid login. If there is one, who is it? */}
+                {authService.checkIfLoggedIn() && user ? (
+                /**
+                * TODO: onClick:
+                * 1. authService.logout()
+                * 2. setUser(null)
+                */
+                <NavLink
+                    to="/logout"
+                    activeClassName="bg-yellow-300 text-green-800 hover:text-yellow-900"
+                    className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition"
+                >
+                    Logout
+                </NavLink>
+                ) : (
+                <NavLink
+                    to="/login"
+                    activeClassName="bg-yellow-300 text-green-800 hover:text-yellow-900"
+                    className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition"
+                >
+                    Login
+                </NavLink>
+                )}
             </div>
             
         </nav>
