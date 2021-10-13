@@ -71,29 +71,29 @@ function Itinerary(props) {
                 <div id="itinerary" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg"
                 >
                     <h2 className="font-bold">Add itinerary</h2>
-                    <form className="signup-form flex flex-col justify-center items-center gap-2">
+                    <form className="newItinerary-form flex flex-col justify-center items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
-                            <label for="name-" className="font-bold self-start">Who:</label>
-                            <input className="form-input" type="text" id="name-" />
+                            <label for="who" className="font-bold self-start">Who:</label>
+                            <input className="form-input" type="text" id="who" name="who" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
-                            <label for="name" className="font-bold self-start">How:</label>
-                            <input className="form-input" type="text" id="name" />
+                            <label for="how" className="font-bold self-start">How:</label>
+                            <input className="form-input" type="text" id="how" name="how" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
-                            <label for="name-signup" className="font-bold self-start">Arrive:</label>
-                            <input className="form-input" type="date" id="name-signup" />
+                            <label for="arrive" className="font-bold self-start">Arrive:</label>
+                            <input className="form-input" type="date" id="arrive" name="arrive" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
-                            <label for="email-signup" className="font-bold self-start">Depart:</label>
-                            <input className="form-input" type="date" id="email-signup" />
+                            <label for="depart" className="font-bold self-start">Depart:</label>
+                            <input className="form-input" type="date" id="depart" name="depart" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label
-                            for="password-signup"
+                            for="otherInfo"
                             className="font-bold self-start"
                             >Other info:</label>
-                            <textarea rows="4" cols="40" className="form-input" id="password-signup"></textarea>   
+                            <textarea rows="4" cols="40" className="form-input" id="otherInfo" name="otherInfo"></textarea>   
                         </div>
                         <button className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white" type="submit">Submit</button>
                     </form>

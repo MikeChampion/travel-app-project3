@@ -1,6 +1,8 @@
+import UserContext from "../context/UserContext";
 import PropTypes from "prop-types";
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 
 const navLinks = [
   {
@@ -13,18 +15,8 @@ const navLinks = [
   },
 ];
 
-const navLoginOutLinks = [
-    {
-        name: "Login",
-        route: "/login",
-    },
-    // {
-    //     name: "Logout",
-    //     route: "/logout",
-    // },
-  ];
-
 function Navbar(props) {
+    const [user] = React.useContext(UserContext);
     return (
         <nav className="flex flex-row justify-between items-center w-full px-4 py-2 bg-yellow-700 text-white">
             <div className="flex">
@@ -38,12 +30,26 @@ function Navbar(props) {
                     </NavLink>
                 ))}
             </div>
-            <div className="">
-                {navLoginOutLinks.map((link, index) => (
-                    <NavLink key={index} to={link.route} activeClassName='bg-yellow-300 text-green-800 hover:text-yellow-900' className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition">
-                        {link.name}
-                    </NavLink>
-                ))}
+
+            <div>
+               {user?.data ?  <NavLink
+                    to="/logout"
+                    activeClassName="bg-yellow-300 text-green-800 hover:text-yellow-900"
+                    className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition"
+                >
+                    Logout
+                </NavLink> :  <NavLink
+                    to="/login"
+                    activeClassName="bg-yellow-300 text-green-800 hover:text-yellow-900"
+                    className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition"
+                >
+                    Login
+                </NavLink> }
+                 
+               
+               
+                
+                
             </div>
             
         </nav>

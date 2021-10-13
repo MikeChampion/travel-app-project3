@@ -2,8 +2,10 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Activity from "./components/Activity";
 import Modal from "react-modal";
+import auth from "../src/utils/auth"
 import Itinerary from "./components/Itinerary";
-import Login from "./components/Login";
+import LoginSignup from "./components/LoginSignup";
+import UserContext from "./context/UserContext";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -32,18 +34,20 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider client={client}>
-            <Router>
-                <main className="flex flex-col items-center w-full">
-                    <Navbar />
-                    <Switch >
-                        <Redirect exact from="/" to="/activities"></Redirect>
-                        <Route path="/activities" component={Activity}></Route>
-                        <Route path="/itinerary" component={Itinerary}></Route>
-                        <Route path="/login" component={Login}></Route>
-                        <Route path="/logout" component={Activity}></Route>
-                    </Switch>
-                </main>
-            </Router>
+            <UserContext.Provider value={React.useState(auth.getProfile())}>
+                <Router>
+                    <main className="flex flex-col items-center w-full">
+                        <Navbar />
+                        <Switch >
+                            <Redirect exact from="/" to="/activities"></Redirect>
+                            <Route path="/activities" component={Activity}></Route>
+                            <Route path="/itinerary" component={Itinerary}></Route>
+                            <Route path="/login" component={LoginSignup}></Route>
+                            <Route path="/logout" component={Activity}></Route>
+                        </Switch>
+                    </main>
+                </Router>
+            </UserContext.Provider>
         </ApolloProvider>
     );
 }

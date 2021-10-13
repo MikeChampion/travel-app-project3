@@ -79,19 +79,19 @@ function Activities(props) {
                     <h2 className="font-bold">Add Activity</h2>
                     <form className="signup-form flex flex-col justify-start items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
-                            <label htmlFor="name-signup" className="font-bold self-start">Where:</label>
-                            <input className="form-input" type="text" id="name-signup" />
+                            <label htmlFor="where" className="font-bold self-start">Where:</label>
+                            <input className="form-input" type="text" id="where" name="where" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
-                            <label htmlFor="email-signup" className="font-bold self-start">When:</label>
-                            <input className="form-input" type="date" id="email-signup" />
+                            <label htmlFor="when" className="font-bold self-start">When:</label>
+                            <input className="form-input" type="date" id="when" name="when" />
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label
-                            htmlFor="password-signup"
+                            htmlFor="description"
                             className="font-bold self-start"
                             >Description:</label>
-                            <textarea rows="4" cols="40" className="form-input" id="password-signup"></textarea>   
+                            <textarea rows="4" cols="40" className="form-input" id="description" name="description" ></textarea>   
                         </div>
                         <button className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white"
                             type="submit">Submit</button>
