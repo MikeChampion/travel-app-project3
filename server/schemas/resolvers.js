@@ -114,17 +114,26 @@ const resolvers = {
           return Travel.findOneAndDelete({_id});
         },
 
-      // addVote: async (_, { activityId }, context) => {
-      //   if (context.user) {
-      //     const activity = await Activity.findById(activityId);
-      //     if (activity) {
-      //       if(activity.votes.find((vote) => vote.))
-      //     }
+      addVote: async (_, { activityId }, context) => {
+        if (context.user) {
+          const activity = await Activity.findById(activityId);
+          const username = await User.findById(username)
+          if (activity) {
+            if(activity.votes.find((vote) => vote.username === username)){
+              activity.votes = activity.votes.filter((like) => like.username !== username)
+            } else {
+
+              activity.likes.push ({
+                username
+              });
+          }
+          await activity.save ()
+          return activity;
          
-      //   }
+        }
       
-      //   throw new AuthenticationError('You need to be logged in!');
-      // }
+       } else throw new AuthenticationError('You need to be logged in!');
+      }
     }
 
 
