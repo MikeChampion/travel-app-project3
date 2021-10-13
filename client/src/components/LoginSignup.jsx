@@ -1,17 +1,15 @@
 import { useMutation } from '@apollo/client';
-import UserContext from "context/UserContext";
+import UserContext from "../context/UserContext";
 import React, { useState } from 'react';
-import authService from "services/authService";
-// import Auth from '../utils/auth';
+import authService from "../utils/auth";
 import { ADD_USER, LOGIN } from '../utils/mutations';
-// import AdminContext from '../context/AdminContext';
 import AddUser from "./AddUser";
 import Login from "./Login";
 import { useHistory } from "react-router-dom";
 
 function LoginForms() {
     const [_, setUser] = React.useContext(UserContext);
-  const history = useHistory();
+const history = useHistory();
 
   const [addUser] = useMutation(ADD_USER, {
     // Add user to context
@@ -28,9 +26,9 @@ function LoginForms() {
   });
 
   const [login] = useMutation(LOGIN, {
-    onCompleted({ addUser }) {
-      authService.login(addUser.token);
-      setUser(addUser.user);
+    onCompleted({login}) {
+      authService.login(login.token);
+      setUser(login.user);
       history.push("/");
     },
   });
@@ -38,7 +36,6 @@ function LoginForms() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const submission = Object.fromEntries(new FormData(event.target));
-
     try {
       if (submission.firstName) {
         addUser({
@@ -116,4 +113,4 @@ function LoginForms() {
     )
 }
 
-export default Login
+export default LoginForms
