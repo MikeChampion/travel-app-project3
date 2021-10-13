@@ -26,12 +26,22 @@ const activitySchema = new Schema  ({
         ref: 'User',
         required: false
       },
-      votes: [voteschema]
-    
-      
-    })
-    
+      votes: [
+          {
+          username: String,
+          }
 
+],
+
+user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+}
+
+
+});
+    
+  
 
 
 const Activity = mongoose.model('Activity', activitySchema);

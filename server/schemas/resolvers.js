@@ -4,6 +4,9 @@ const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
+  Activity: {
+    voteCount: (parent) => parent.votes.length
+},
 
   // ======== QUERIES ========
   Query:{
@@ -51,7 +54,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        login: async (parent, { email, password }) => {
+        login: async (_, { email, password }) => {
             const user = await User.findOne({ email });
       
             if (!user) {

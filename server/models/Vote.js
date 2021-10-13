@@ -1,16 +1,16 @@
-const { Schema } = require('mongoose');
+// const { Schema } = require('mongoose');
 
-;
+// ;
 
-const voteSchema = new Schema  ({
+// const voteSchema = new Schema  ({
 
-     username: {
-     type: String,
-     required: true
-      },
+//      username: {
+//      type: String,
+//      required: true
+//       },
 
-});
+// });
 
    
 
-module.exports = voteSchema;
+// module.exports = voteSchema;
