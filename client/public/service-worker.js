@@ -8,7 +8,6 @@ const FILES_TO_CACHE = [
     "/logo512.png",
     "/manifest.json",
     "tailwind.config.js",
-    "/manifest.webmanifest",
     "favicon.ico"
     ];
 
@@ -19,6 +18,7 @@ const FILES_TO_CACHE = [
         );
     
     });
+    
 
     
     self.addEventListener("fetch", function(evt) {
