@@ -114,16 +114,16 @@ const resolvers = {
           return Travel.findOneAndDelete({_id});
         },
 
-      addVote: async (_, { activityId }, context) => {
+      addVote: async (_, { activityId, postedBy }, context) => {
         if (context.user) {
           const activity = await Activity.findById(activityId);
-          const username = await User.findById(username)
+          const username = await Activity.findById(postedBy)
           if (activity) {
             if(activity.votes.find((vote) => vote.username === username)){
               activity.votes = activity.votes.filter((like) => like.username !== username)
             } else {
 
-              activity.likes.push ({
+              activity.votes.push ({
                 username
               });
           }
