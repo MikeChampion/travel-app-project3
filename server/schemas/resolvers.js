@@ -82,11 +82,11 @@ const resolvers = {
               
                 await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { activities: activity._id } },
+                { $addToSet: { activities: activity._id } },
                 { new: true }
               );
 
-              return await activity.populate('postedBy').execPopulate();
+              return activity
             }
           
             throw new AuthenticationError('You need to be logged in!');
