@@ -45,6 +45,7 @@ type Vote {
 
   type Query {
    user(_id: ID!): User
+   users: [User]
    activities(postedBy: ID):[Activity]
    activity(_id: ID!) : Activity
    travels(postedBy: ID) :[Travel]
