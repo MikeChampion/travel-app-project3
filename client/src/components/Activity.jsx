@@ -4,14 +4,12 @@ import UserContext from "../context/UserContext";
 import React from 'react';
 import Modal from 'react-modal';
 import { ADD_ACTIVITY } from '../utils/mutations';
-import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
 
 function Activities(props) {    
     const [_, setActivity] = React.useContext(UserContext);
-    const history = useHistory();
-
+    
     const { data } = useQuery(QUERY_ACTIVITIES);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
@@ -26,7 +24,6 @@ function Activities(props) {
       const handleSubmit = (event) => {
         event.preventDefault();
         const submission = Object.fromEntries(new FormData(event.target));
-        console.log("FORM", submission);
         try {
             addActivity({
               variables: submission,
