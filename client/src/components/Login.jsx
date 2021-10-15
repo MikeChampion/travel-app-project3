@@ -1,5 +1,6 @@
 function Login(props) {
-    return(    <div id="login" className="flex flex-col justify-start items-center p-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg">
+    return(    
+    <div id="login" className="flex flex-col justify-start items-center p-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg">
         <h2 className="font-bold">Login</h2>
         <form onSubmit={props.submitHandler} className="login-form flex flex-col justify-center items-center gap-2">
             <div className="flex flex-col justify-center items-center">
