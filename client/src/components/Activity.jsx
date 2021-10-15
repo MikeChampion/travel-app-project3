@@ -1,26 +1,50 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import UserContext from "../context/UserContext";
+import React from 'react';
 import Modal from 'react-modal';
-
-const activities = [
-    {
-        date: "10/31/2021",
-        name: "Halloween",
-        desc: "Candy, costumes, parties, a bunch more text just to see what this does at much larger content"
-    },
-    {
-        date: "11/25/2021",
-        name: "Turkey Day",
-        desc: "Food, Football, PIE!"
-    },
-    {
-        date: "12/25/2021",
-        name: "X-Mas",
-        desc: "Gifts (hopefully no socks), food"
-    },
-  ];
+import { ADD_ACTIVITY } from '../utils/mutations';
+import { useHistory } from "react-router-dom";
+import { useMutation, useQuery } from '@apollo/client';
+import { QUERY_ACTIVITIES } from '../utils/queries';
 
 function Activities(props) {    
+    const [_, setActivity] = React.useContext(UserContext);
+    const history = useHistory();
+
+    const { data } = useQuery(QUERY_ACTIVITIES);
+    console.log(data?.activities);
+
+    const [addActivity] = useMutation(ADD_ACTIVITY, {
+        // Add user to context
+        onCompleted({ addActivity }) {
+          // Put token in local storage via Auth service
+        //   authService.login(addUser.token);
+    
+          // Set activity in context (not token - their data)
+          setActivity(addActivity.activity);
+    
+          // Redirect to activities WITHOUT RESETTING THE WHOLE APP and losing context!
+          history.push("/activities");
+        },
+      });
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const submission = Object.fromEntries(new FormData(event.target));
+        try {
+          if (submission.username) {
+            addActivity({
+              variables: submission,
+            });
+          }
+        } catch (error) {
+        //TODO: Handle error with a reusable error component
+           console.error(error.message);
+        }
+      };
+
+
     const [modalIsOpen, setModalIsOpen] = useState(false)
     return (
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
@@ -29,17 +53,17 @@ function Activities(props) {
                 <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
             </div>
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
-                {activities.map((activity, index) => (
+                {data?.activities.map((activity, index) => (
                     <div key={index} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
                         <div className="w-8/12">
-                            <p>{activity.date}</p>
-                            <p className="font-bold">{activity.name}</p>
-                            <p>{activity.desc}</p>
+                            <p>{activity.when}</p>
+                            <p className="font-bold">{activity.where}</p>
+                            <p>{activity.description}</p>
                         </div>
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <button onClick="" className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>0</p>
                                 </div>
                             </div>
@@ -77,7 +101,7 @@ function Activities(props) {
                 >
                 <div id="newActivity" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg">
                     <h2 className="font-bold">Add Activity</h2>
-                    <form className="signup-form flex flex-col justify-start items-center gap-2">
+                    <form onSubmit={handleSubmit} className="signup-form flex flex-col justify-start items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
                             <label htmlFor="where" className="font-bold self-start">Where:</label>
                             <input className="form-input" type="text" id="where" name="where" />
