@@ -101,7 +101,7 @@ function Activities(props) {
                 >
                 <div id="newActivity" className="flex flex-col justify-center items-center p-4 mt-4 w-max border-yellow-600 border-2 bg-yellow-300 rounded-lg">
                     <h2 className="font-bold">Add Activity</h2>
-                    <form submitHandler={handleSubmit} className="signup-form flex flex-col justify-start items-center gap-2">
+                    <form onSubmit={handleSubmit} className="signup-form flex flex-col justify-start items-center gap-2">
                         <div className="flex flex-col justify-center items-center">
                             <label htmlFor="where" className="font-bold self-start">Where:</label>
                             <input className="form-input" type="text" id="where" name="where" />
