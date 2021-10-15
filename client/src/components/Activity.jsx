@@ -19,9 +19,7 @@ function Activities(props) {
         onCompleted({ addActivity }) {
           // Set activity in context (not token - their data)
           setActivity(addActivity.activity);
-          //   onClick={() => setModalIsOpen(false)}
-          // Redirect to activities WITHOUT RESETTING THE WHOLE APP and losing context!
-          history.push("/activities");
+          setModalIsOpen(false);
         },
       });
 
