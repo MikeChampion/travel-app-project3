@@ -88,7 +88,7 @@ export const ADD_VOTE = gql`
       activityId
       votes {
         _id
-        username
+        
       }
       voteCount
     }
