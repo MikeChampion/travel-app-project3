@@ -4,7 +4,7 @@ return(  <div id="signup" className="flex flex-col justify-start items-center p-
         <form className="signup-form flex flex-col justify-center items-center gap-2">
             {/*  onChange={handleChange}  */}
             <div className="flex flex-col justify-center items-center">
-                <label htmlFor="username" className="font-bold self-start">first name:</label>
+                <label htmlFor="username" className="font-bold self-start">username:</label>
                 <input className="form-input" type="text" id="username" name="username" />
             </div>
             <div className="flex flex-col justify-center items-center">
