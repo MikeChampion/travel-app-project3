@@ -122,7 +122,7 @@ function Activities(props) {
 Activities.propTypes = {
     date: PropTypes.string,
     name: PropTypes.string,
-    desc: PropTypes.string
+    description: PropTypes.string
 };
 
 export default Activities
