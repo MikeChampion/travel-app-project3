@@ -60,7 +60,7 @@ query travels($postedBy: ID) {
 `;
 
 export const QUERY_TRAVEL = gql`
-  query activity($id: ID!) {
+  query travel($id: ID!) {
     activity(_id: $id) {
       _id
       who

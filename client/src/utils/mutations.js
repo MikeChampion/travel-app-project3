@@ -56,7 +56,7 @@ mutation addActivity (
 `
 
 export const ADD_TRAVEL = gql `
-mutation addActivity (
+mutation addTravel (
   $who: String!
   $how: String!
   $arrive: String!
@@ -64,7 +64,7 @@ mutation addActivity (
   $notes: String
   
 ){
-  addActivity(
+  addTravel(
     who: $who
     how: $how
     arrive: $arrive
