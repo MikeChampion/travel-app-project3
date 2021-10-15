@@ -3,15 +3,17 @@ import PropTypes from "prop-types";
 import UserContext from "../context/UserContext";
 import React from 'react';
 import Modal from 'react-modal';
-import { ADD_ACTIVITY } from '../utils/mutations';
+import { ADD_ACTIVITY, ADD_VOTE } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
 import auth from "../utils/auth";
 
 function Activities(props) {    
-    const [_, setActivity] = React.useContext(UserContext);
+    const [activity, setActivity] = React.useContext(UserContext);
+    const [vote, setVote] = React.useContext(UserContext);
     const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_ACTIVITIES);
+    console.log(data.activities);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
         // Add user to context
@@ -19,6 +21,14 @@ function Activities(props) {
           // Set activity in context (not token - their data)
           setActivity(addActivity.activity);
           setModalIsOpen(false);
+        },
+      });
+
+      const [addVote] = useMutation(ADD_VOTE, {
+        // Add user to context
+        onCompleted({ addVote }) {
+          // Set activity in context (not token - their data)
+          setVote(addVote.vote);
         },
       });
 
@@ -41,7 +51,7 @@ function Activities(props) {
     return (
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
             <div className="flex flex-row justify-between items-center w-5/6">
-                <h2 className="text-2xl font-bold self-start">Activities</h2>   
+                <h2 className="text-2xl font-bold self-start">Activities {user?.data ? <span></span> : <span className="text-base">(Log in to like)</span> }</h2>   
                 {user?.data ?
                     <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
                     :
@@ -59,9 +69,12 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                {/* TODO: ADD onclick */}
+                                {user?.data ?
+                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" onClick={addVote}><ion-icon name="thumbs-up"></ion-icon></button>
+                                    :
                                     <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
-                                    <p>0</p>
+                                }
+                                    <p>{activity.vote}</p>
                                 </div>
                             </div>
                         </div>
