@@ -12,7 +12,7 @@ function Activities(props) {
     const [_, setActivity] = React.useContext(UserContext);
     const history = useHistory();
 
-    const { data} = useQuery(QUERY_ACTIVITIES);
+    const { data } = useQuery(QUERY_ACTIVITIES);
     console.log(data?.activities);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
@@ -56,14 +56,14 @@ function Activities(props) {
                 {data?.activities.map((activity, index) => (
                     <div key={index} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
                         <div className="w-8/12">
-                            <p>{activity.date}</p>
-                            <p className="font-bold">{activity.name}</p>
-                            <p>{activity.desc}</p>
+                            <p>{activity.when}</p>
+                            <p className="font-bold">{activity.where}</p>
+                            <p>{activity.description}</p>
                         </div>
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <button onClick="" className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>0</p>
                                 </div>
                             </div>
