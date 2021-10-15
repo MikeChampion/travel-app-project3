@@ -19,7 +19,7 @@ function Activities(props) {
         onCompleted({ addActivity }) {
           // Set activity in context (not token - their data)
           setActivity(addActivity.activity);
-    
+          //   onClick={() => setModalIsOpen(false)}
           // Redirect to activities WITHOUT RESETTING THE WHOLE APP and losing context!
           history.push("/activities");
         },
@@ -32,6 +32,7 @@ function Activities(props) {
         try {
             addActivity({
               variables: submission,
+              refetchQueries: ["activities"],
             });
         } catch (error) {
         //TODO: Handle error with a reusable error component
@@ -58,7 +59,8 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                    <button onClick="" className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                {/* TODO: ADD onclick */}
+                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                     <p>0</p>
                                 </div>
                             </div>
@@ -113,7 +115,7 @@ function Activities(props) {
                             <textarea rows="4" cols="40" className="form-input" id="description" name="description" ></textarea>   
                         </div>
                         <button className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white"
-                            type="submit" onClick={() => setModalIsOpen(false)}>Submit</button>
+                            type="submit" >Submit</button>
                     </form>
                 </div>
                 <button onClick={() => setModalIsOpen(false)}>Close</button>
