@@ -6,24 +6,19 @@ db.once('open', async () => {
     await User.deleteMany();
 
   await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
+    userName: 'Pamela Washington',
     email: 'pamela@testmail.com',
     password: 'password12345',
-  
-    
   });
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
+    userName: 'Elijah Holt',
     email: 'eholt@testmail.com',
     password: 'password12345'
   });
 
     await User.create({
-    firstName: 'Betty ',
-    lastName: 'White',
+    userName: 'Betty White',
     email: 'bwhite@testmail.com',
     password: 'password12345'
   });
@@ -59,8 +54,8 @@ await Travel.create ({
   who: "Robinson Family",
   how: "Plane",
   arrive: "8:00 am 10/22/21",
-  depart: "9:00 am 10/28/21"
-
+  depart: "9:00 am 10/28/21",
+  notes: ""
 });
 
 await Travel.create ({
