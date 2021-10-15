@@ -21,7 +21,7 @@ function LoginForms() {
       setUser(addUser.user);
 
       // Redirect to home WITHOUT RESETTING THE WHOLE APP and losing context!
-    //   history.push("/");
+      history.push("/");
     },
   });
 
@@ -29,7 +29,7 @@ function LoginForms() {
     onCompleted({login}) {
       authService.login(login.token);
       setUser(login.user);
-    //   history.push("/");
+      history.push("/");
     },
   });
 
