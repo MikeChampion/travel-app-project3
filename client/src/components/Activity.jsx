@@ -3,29 +3,32 @@ import PropTypes from "prop-types";
 import UserContext from "../context/UserContext";
 import React from 'react';
 import Modal from 'react-modal';
-import { ADD_ACTIVITY } from '../utils/mutations';
-import { useHistory } from "react-router-dom";
+import { ADD_ACTIVITY, ADD_VOTE } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
+import auth from "../utils/auth";
 
 function Activities(props) {    
-    const [_, setActivity] = React.useContext(UserContext);
-    const history = useHistory();
-
+    const [activity, setActivity] = React.useContext(UserContext);
+    const [vote, setVote] = React.useContext(UserContext);
+    const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_ACTIVITIES);
-    console.log(data?.activities);
+    console.log(data);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
         // Add user to context
         onCompleted({ addActivity }) {
-          // Put token in local storage via Auth service
-        //   authService.login(addUser.token);
-    
           // Set activity in context (not token - their data)
           setActivity(addActivity.activity);
-    
-          // Redirect to activities WITHOUT RESETTING THE WHOLE APP and losing context!
-          history.push("/activities");
+          setModalIsOpen(false);
+        },
+      });
+
+      const [addVote] = useMutation(ADD_VOTE, {
+        // Add user to context
+        onCompleted({ addVote }) {
+          // Set activity in context (not token - their data)
+          setVote(addVote.vote);
         },
       });
 
@@ -33,11 +36,10 @@ function Activities(props) {
         event.preventDefault();
         const submission = Object.fromEntries(new FormData(event.target));
         try {
-          if (submission.username) {
             addActivity({
               variables: submission,
+              refetchQueries: ["activities"],
             });
-          }
         } catch (error) {
         //TODO: Handle error with a reusable error component
            console.error(error.message);
@@ -49,8 +51,12 @@ function Activities(props) {
     return (
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
             <div className="flex flex-row justify-between items-center w-5/6">
-                <h2 className="text-2xl font-bold self-start">Activities</h2>
-                <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
+                <h2 className="text-2xl font-bold self-start">Activities {user?.data ? <span></span> : <span className="text-base">(Log in to like)</span> }</h2>   
+                {user?.data ?
+                    <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
+                    :
+                    <button className="hidden">+</button>
+                }
             </div>
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {data?.activities.map((activity, index) => (
@@ -63,8 +69,12 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
-                                    <button onClick="" className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
-                                    <p>0</p>
+                                {user?.data ?
+                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" onClick={addVote}><ion-icon name="thumbs-up"></ion-icon></button>
+                                    :
+                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                }
+                                    <p>{activity.votes}</p>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +128,7 @@ function Activities(props) {
                             <textarea rows="4" cols="40" className="form-input" id="description" name="description" ></textarea>   
                         </div>
                         <button className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white"
-                            type="submit">Submit</button>
+                            type="submit" >Submit</button>
                     </form>
                 </div>
                 <button onClick={() => setModalIsOpen(false)}>Close</button>
@@ -130,7 +140,7 @@ function Activities(props) {
 Activities.propTypes = {
     date: PropTypes.string,
     name: PropTypes.string,
-    desc: PropTypes.string
+    description: PropTypes.string
 };
 
 export default Activities
