@@ -6,10 +6,11 @@ import Modal from 'react-modal';
 import { ADD_ACTIVITY } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
+import auth from "../utils/auth";
 
 function Activities(props) {    
     const [_, setActivity] = React.useContext(UserContext);
-    
+    const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_ACTIVITIES);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
@@ -40,8 +41,12 @@ function Activities(props) {
     return (
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
             <div className="flex flex-row justify-between items-center w-5/6">
-                <h2 className="text-2xl font-bold self-start">Activities</h2>
-                <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
+                <h2 className="text-2xl font-bold self-start">Activities</h2>   
+                {user?.data ?
+                    <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ activity</button>
+                    :
+                    <button className="hidden">+</button>
+                }
             </div>
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {data?.activities.map((activity, index) => (

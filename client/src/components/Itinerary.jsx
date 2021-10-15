@@ -9,7 +9,7 @@ import { QUERY_TRAVELS } from '../utils/queries';
 
 function Itinerary(props) {   
     const [_, setTravel] = React.useContext(UserContext);
-    
+    const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_TRAVELS);
     console.log(data);
 
@@ -42,7 +42,11 @@ function Itinerary(props) {
         <main className="flex flex-col items-center mt-4 w-11/12 md:w-5/6 lg:w-3/4 gap-4">
             <div className="flex flex-row justify-between items-center w-5/6">
                 <h2 className="text-2xl font-bold self-start">Itinerary</h2>
+                {user?.data ?
                 <button onClick={() => setModalIsOpen(true)} className="px-2 py-1 bg-yellow-200 border border-yellow-600 rounded-lg">+ itinerary</button>
+                :
+                    <button className="hidden">+</button>
+                }
             </div>
             <div id="itineraryContainer" className="flex flex-col items-center gap-4 lg:flex-row lg:flex-wrap lg:justify-between w-full lg:w-5/6">
                 {data?.travels.map((item, index) => (
