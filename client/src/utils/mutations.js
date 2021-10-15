@@ -35,13 +35,13 @@ mutation addActivity (
   $where: String!
   $when: String!
   $description: String!
-  $notes: String
+  
 ){
   addActivity(
     where: $where
     when: $when
     description: $description
-    notes: $notes
+    
     
 
   ) {
@@ -49,7 +49,7 @@ mutation addActivity (
     where 
     when
     description
-    notes
+    
     
   }
 }
@@ -82,4 +82,16 @@ mutation addActivity (
   }
 }
 `
+export const ADD_VOTE = gql`
+  mutation addVote($activityId: ID!) {
+    addVote(activityId: $activityId) {
+      activityId
+      votes {
+        _id
+        username
+      }
+      voteCount
+    }
+  }
+`;
 
