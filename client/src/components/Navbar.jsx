@@ -2,6 +2,7 @@ import UserContext from "../context/UserContext";
 import PropTypes from "prop-types";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import auth from "../utils/auth";
 
 
 const navLinks = [
@@ -33,7 +34,7 @@ function Navbar(props) {
 
             <div>
                {user?.data ?  <NavLink
-                    to="/logout"
+                    to="/logout" onClick={auth.logout}
                     activeClassName="bg-yellow-300 text-green-800 hover:text-yellow-900"
                     className="text-sm md:text-lg px-2 py-1 underline rounded-lg hover:text-yellow-300 transition"
                 >
