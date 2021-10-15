@@ -13,14 +13,10 @@ function Activities(props) {
     const history = useHistory();
 
     const { data } = useQuery(QUERY_ACTIVITIES);
-    console.log(data?.activities);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
         // Add user to context
         onCompleted({ addActivity }) {
-          // Put token in local storage via Auth service
-        //   authService.login(addUser.token);
-    
           // Set activity in context (not token - their data)
           setActivity(addActivity.activity);
     
@@ -32,12 +28,11 @@ function Activities(props) {
       const handleSubmit = (event) => {
         event.preventDefault();
         const submission = Object.fromEntries(new FormData(event.target));
+        console.log("FORM", submission);
         try {
-          if (submission.username) {
             addActivity({
               variables: submission,
             });
-          }
         } catch (error) {
         //TODO: Handle error with a reusable error component
            console.error(error.message);
@@ -118,7 +113,7 @@ function Activities(props) {
                             <textarea rows="4" cols="40" className="form-input" id="description" name="description" ></textarea>   
                         </div>
                         <button className="border-yellow-900 border bg-yellow-600 rounded-lg px-2 py-1 self-end text-white"
-                            type="submit">Submit</button>
+                            type="submit" onClick={() => setModalIsOpen(false)}>Submit</button>
                     </form>
                 </div>
                 <button onClick={() => setModalIsOpen(false)}>Close</button>
