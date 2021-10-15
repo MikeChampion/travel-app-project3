@@ -16,7 +16,9 @@ export const QUERY_USER = gql`
       when
       where
       description
-      votes
+      votes {
+        _id
+      }
       voteCount
       postedBy {
         _id
@@ -34,7 +36,9 @@ export const QUERY_ACTIVITY = gql`
       when
       where
       description
-      votes
+      votes {
+        _id
+      }
       voteCount
       postedBy {
         _id
