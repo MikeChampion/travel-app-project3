@@ -82,4 +82,16 @@ mutation addActivity (
   }
 }
 `
+export const ADD_VOTE = gql`
+  mutation addVote($activityId: ID!) {
+    addVote(activityId: $activityId) {
+      activityId
+      votes {
+        _id
+        username
+      }
+      voteCount
+    }
+  }
+`;
 

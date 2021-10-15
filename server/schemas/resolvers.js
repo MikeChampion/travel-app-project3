@@ -120,7 +120,6 @@ const resolvers = {
       addVote: async (_, { activityId }, context) => {
         if (context.user) {
           const likedActivity = await Activity.findOne({_id: activityId});
-          
           if (likedActivity) {
             if(likedActivity.votes.find((vote) => vote.username === context.user.username)){
               const unlikedActivity = likedActivity.votes = likedActivity.votes.find((vote) => vote.username === context.user.username);
@@ -130,6 +129,7 @@ const resolvers = {
                   $pull: {
                     votes: {
                       _id: unlikedActivity._id
+
                     },
                   },
                 },
@@ -142,6 +142,7 @@ const resolvers = {
                   $addToSet: {
                     votes: {username: context.user.username},
                   },
+                 
                 },
                 {
                   new: true,
