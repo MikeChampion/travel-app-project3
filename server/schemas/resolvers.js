@@ -11,8 +11,11 @@ const resolvers = {
   // ======== QUERIES ========
   Query:{
 
-    user: async (_, { _id }) => {
-      return User.findOne({ _id });
+    user: async (_, { username }) => {
+      return User.findOne({ username }).populate("activities");
+    },
+    users: async () => {
+      return User.find().populate("activities")
     },
 
     activities: async () => {
@@ -79,11 +82,11 @@ const resolvers = {
               
                 await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { activities: activity._id } },
+                { $addToSet: { activities: activity._id } },
                 { new: true }
               );
 
-              return await activity.populate('postedBy').execPopulate();
+              return activity
             }
           
             throw new AuthenticationError('You need to be logged in!');
@@ -116,23 +119,40 @@ const resolvers = {
 
       addVote: async (_, { activityId }, context) => {
         if (context.user) {
-          const activity = await Activity.findById(activityId);
-          const username = await User.findById(username)
-          if (activity) {
-            if(activity.votes.find((vote) => vote.username === username)){
-              activity.votes = activity.votes.filter((like) => like.username !== username)
+          const likedActivity = await Activity.findOne({_id: activityId});
+          
+          if (likedActivity) {
+            if(likedActivity.votes.find((vote) => vote.username === context.user.username)){
+              const unlikedActivity = likedActivity.votes = likedActivity.votes.find((vote) => vote.username === context.user.username);
+              return Activity.findOneAndUpdate(
+                {_id: activityId},
+                { 
+                  $pull: {
+                    votes: {
+                      _id: unlikedActivity._id
+                    },
+                  },
+                },
+                {new: true}
+              )
             } else {
+              return Activity.findOneAndUpdate (
+                {_id: activityId},
+                {
+                  $addToSet: {
+                    votes: {username: context.user.username},
+                  },
+                },
+                {
+                  new: true,
+                  runValidators: true,
+                }
+              )
 
-              activity.likes.push ({
-                username
-              });
-          }
-          await activity.save ()
-          return activity;
-         
+          } 
         }
       
-       } else throw new AuthenticationError('You need to be logged in!');
+       }  throw new AuthenticationError('You need to be logged in!');
       }
     }
 
