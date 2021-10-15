@@ -13,7 +13,7 @@ function Activities(props) {
     const [vote, setVote] = React.useContext(UserContext);
     const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_ACTIVITIES);
-    console.log(data.activities);
+    console.log(data);
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
         // Add user to context
@@ -74,7 +74,7 @@ function Activities(props) {
                                     :
                                     <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
                                 }
-                                    <p>{activity.vote}</p>
+                                    <p>{activity.votes}</p>
                                 </div>
                             </div>
                         </div>
