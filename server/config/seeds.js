@@ -55,17 +55,18 @@ await Travel.create ({
   how: "Plane",
   arrive: "8:00 am 10/22/21",
   depart: "9:00 am 10/28/21",
-  notes: ""
+  notes: "possible weather could delay arrival"
 });
 
 await Travel.create ({
   who: "Smith Family",
   how: "Car",
   arrive: "3:00 pm 10/21/21",
-  depart: "12:00 pm 10/28/21"
-})
+  depart: "12:00 pm 10/28/21",
+  notes: "will need extra space due to children and luggage"
+});
 
-console.log ('travels seeded')
+console.log ('travels seeded');
 
 
 process.exit ();
