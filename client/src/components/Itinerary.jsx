@@ -11,7 +11,6 @@ function Itinerary(props) {
     const [_, setTravel] = React.useContext(UserContext);
     const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_TRAVELS);
-    console.log(data);
 
     const [addTravel] = useMutation(ADD_TRAVEL, {
         // Add user to context
