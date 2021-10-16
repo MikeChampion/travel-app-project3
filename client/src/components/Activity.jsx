@@ -89,15 +89,15 @@ function Activities(props) {
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
                                 {user?.data ?
-                                    <form onClick={handleVote} className="flex flex-col items-center">
-                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up"></ion-icon></button>
+                                <>
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up" onClick={handleVote} /></button>
                                         <p>{activity.voteCount}</p>
-                                    </form>
+                                        </>
                                     :
-                                    <form className="flex flex-col items-center">
-                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <>
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up" /></button>
                                         <p>{activity.voteCount}</p>
-                                    </form>
+                                        </>
                                 }
                                     
                                 </div>
