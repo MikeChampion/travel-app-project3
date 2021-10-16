@@ -79,7 +79,7 @@ function Activities(props) {
             </div>
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {data?.activities.map((activity, index) => (
-                    <div key={index} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
+                    <div key={activity._id} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
                         <div className="w-8/12">
                             <p>{activity.when}</p>
                             <p className="font-bold">{activity.where}</p>
