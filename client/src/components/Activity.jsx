@@ -13,7 +13,7 @@ function Activities(props) {
     const [vote, setVote] = React.useContext(UserContext);
     const [user] = React.useContext(UserContext);
     const { data } = useQuery(QUERY_ACTIVITIES);
-    console.log(data);
+
 
     const [addActivity] = useMutation(ADD_ACTIVITY, {
         // Add user to context
@@ -46,6 +46,25 @@ function Activities(props) {
         }
       };
 
+      function handleVote() {
+        addVote();
+      }
+
+    //   const handleVote = (event) => {
+    //     event.preventDefault();
+    //     const submission = event.target;
+    //     console.log(submission);
+    //     try {
+    //         addVote({
+    //           variables: submission,
+    //           refetchQueries: ["activities"],
+    //         });
+    //     } catch (error) {
+    //     //TODO: Handle error with a reusable error component
+    //        console.error(error.message);
+    //     }
+    //   };
+
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     return (
@@ -70,11 +89,17 @@ function Activities(props) {
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
                                 {user?.data ?
-                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" onClick={addVote}><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <form onClick={handleVote} className="flex flex-col items-center">
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up"></ion-icon></button>
+                                        <p>{activity.voteCount}</p>
+                                    </form>
                                     :
-                                    <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <form className="flex flex-col items-center">
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                        <p>{activity.voteCount}</p>
+                                    </form>
                                 }
-                                    <p>{activity.votes}</p>
+                                    
                                 </div>
                             </div>
                         </div>
