@@ -46,24 +46,23 @@ function Activities(props) {
         }
       };
 
-      function handleVote() {
-        addVote();
-      }
+    //   function handleVote() {
+    //     addVote();
+    //   }
 
-    //   const handleVote = (event) => {
-    //     event.preventDefault();
-    //     const submission = event.target;
-    //     console.log(submission);
-    //     try {
-    //         addVote({
-    //           variables: submission,
-    //           refetchQueries: ["activities"],
-    //         });
-    //     } catch (error) {
-    //     //TODO: Handle error with a reusable error component
-    //        console.error(error.message);
-    //     }
-    //   };
+      const handleVote = (event) => {
+        
+        // console.log();
+        try {
+            addVote({
+              variables: {activityId: event.target.closest("section").id},
+              refetchQueries: ["activities"],
+            });
+        } catch (error) {
+        //TODO: Handle error with a reusable error component
+           console.error(error.message);
+        }
+      };
 
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -77,9 +76,10 @@ function Activities(props) {
                     <button className="hidden">+</button>
                 }
             </div>
+            {/* TODO: Consider if <section> tag is appropriate for 'activityTile' */}
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {data?.activities.map((activity, index) => (
-                    <div key={activity._id} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
+                    <section key={activity._id} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2" id={activity._id}>
                         <div className="w-8/12">
                             <p>{activity.when}</p>
                             <p className="font-bold">{activity.where}</p>
@@ -103,7 +103,7 @@ function Activities(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 ))}
             </div>
             
