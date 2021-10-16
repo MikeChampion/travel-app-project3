@@ -46,24 +46,19 @@ function Activities(props) {
         }
       };
 
-      function handleVote() {
-        addVote();
-      }
-
-    //   const handleVote = (event) => {
-    //     event.preventDefault();
-    //     const submission = event.target;
-    //     console.log(submission);
-    //     try {
-    //         addVote({
-    //           variables: submission,
-    //           refetchQueries: ["activities"],
-    //         });
-    //     } catch (error) {
-    //     //TODO: Handle error with a reusable error component
-    //        console.error(error.message);
-    //     }
-    //   };
+      const handleVote = (event) => {
+        
+        console.log("CLICK");
+        try {
+            addVote({
+              variables: {activityId: event.target.closest("section").id},
+              refetchQueries: ["activities"],
+            });
+        } catch (error) {
+        //TODO: Handle error with a reusable error component
+           console.error(error.message);
+        }
+      };
 
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -77,9 +72,10 @@ function Activities(props) {
                     <button className="hidden">+</button>
                 }
             </div>
+            {/* TODO: Consider if <section> tag is appropriate for 'activityTile' */}
             <div id="activityContainer" className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between lg:w-5/6">
                 {data?.activities.map((activity, index) => (
-                    <div key={index} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2">
+                    <section key={activity._id} className="activityTile flex flex-row justify-between border border-yellow-600 rounded-lg w-full lg:w-5/12 p-2" id={activity._id}>
                         <div className="w-8/12">
                             <p>{activity.when}</p>
                             <p className="font-bold">{activity.where}</p>
@@ -88,22 +84,23 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
+                                {/* TODO: button currently toggles between the buttons, fix it */}
                                 {user?.data ?
-                                    <form onClick={handleVote} className="flex flex-col items-center">
-                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up"></ion-icon></button>
+                                <>
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up" onClick={handleVote} /></button>
                                         <p>{activity.voteCount}</p>
-                                    </form>
+                                        </>
                                     :
-                                    <form className="flex flex-col items-center">
-                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up"></ion-icon></button>
+                                    <>
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up" onClick={handleVote} /></button>
                                         <p>{activity.voteCount}</p>
-                                    </form>
+                                        </>
                                 }
                                     
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 ))}
             </div>
             
