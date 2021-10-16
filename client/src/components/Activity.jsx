@@ -46,13 +46,9 @@ function Activities(props) {
         }
       };
 
-    //   function handleVote() {
-    //     addVote();
-    //   }
-
       const handleVote = (event) => {
         
-        // console.log();
+        console.log("CLICK");
         try {
             addVote({
               variables: {activityId: event.target.closest("section").id},
@@ -88,6 +84,7 @@ function Activities(props) {
                         <div className="flex justify-end items-center w-3/12">
                             <div className="flex flex-row gap-2">
                                 <div className="flex flex-col items-center gap-1">
+                                {/* TODO: button currently toggles between the buttons, fix it */}
                                 {user?.data ?
                                 <>
                                         <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded" type="submit"><ion-icon name="thumbs-up" onClick={handleVote} /></button>
@@ -95,7 +92,7 @@ function Activities(props) {
                                         </>
                                     :
                                     <>
-                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up" /></button>
+                                        <button className="p-1 border-2 bg-green-300 border-green-600 text-green-900 rounded"><ion-icon name="thumbs-up" onClick={handleVote} /></button>
                                         <p>{activity.voteCount}</p>
                                         </>
                                 }
