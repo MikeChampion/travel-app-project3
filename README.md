@@ -28,6 +28,9 @@ https://babylon-travel.herokuapp.com/itinerary
 
 <img width="1301" alt="Travel App 6" src="https://user-images.githubusercontent.com/65679950/137570494-5f10519f-e92a-4df8-a795-d33cbee8f071.png">
 
+<img width="1307" alt="Travel App 7" src="https://user-images.githubusercontent.com/65679950/137570570-aaed2477-e5f3-4f71-b838-48233da1859e.png">
+
+
 
 ## Credits/Contributors
 Mike Champion — Project idea creator, Front End Development
